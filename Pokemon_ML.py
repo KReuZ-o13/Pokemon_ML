@@ -106,4 +106,20 @@ model.fit(train_data, train_labels, epochs=800)
 #now, let's test the model
 #model.evaluate shows how accurate the model is in loss and accuracy values
 loss_value, accuracy_value = model.evaluate(test_data, test_labels)
-print("Our test accuracy was"[accuracy_value])
+print("The loss value is ",loss_value)
+print("The accuracy value is ", accuracy_value)
+
+#now, let's try predicting something!
+#we do this with the predict function!
+#research the argmax thing
+def predictor(test_data, test_labels, index):
+    prediction = model.predict(test_data)
+    if np.argmax(prediction[index]) == test_labels[index]:
+        print(f'This was correctly predicted to be a \"{test_labels[index]}\"!')
+    else:
+        print(f'This was incorrectly predicted to be a \"{np.argmax(prediction[index])}\". It was actually a \"{test_labels[index]}\".')
+        return(prediction)
+
+#now, gaze upon your data. find the pokedex number and randomly feed it in
+#mewtwo is number 150, and we're ripping off the tutorial so...
+predictor(test_data, test_labels, 149)
